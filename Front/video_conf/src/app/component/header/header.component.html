@@ -1,0 +1,24 @@
+<nav class="h-32 w-full my-5">
+  <div class="flex justify-between w-full">
+    <a class="flex flex-row items-center justify-start space-x-4">
+      <img src="assets\image\lipi_logo3.png" class="h-16 ">
+      <p class="text-4xl font-bold">Lipi</p>
+    </a>
+    <div class="flex flex-row items-center justify-end space-x-4">
+      <button class="btn btn-success font-normal	 rounded-full btn-sm" (click)="confCreate()">Создать конференцию</button>
+      <!-- <button class="btn btn-success font-normal	 rounded-full btn-sm">Подключится</button> -->
+      <!-- <button class="btn btn-success font-normal	 rounded-full btn-sm">Помощь</button> -->
+      <div *ngIf="!checkUser">
+        <button class="btn btn-success font-normal	 rounded-full btn-sm" routerLink="/authorization">Войти</button>
+      </div>
+      <div *ngIf="checkUser">
+        <div class="dropdown dropdown-end">
+          <div tabindex="0" role="button" class="btn btn-success font-normal	 rounded-full btn-sm"><mat-icon>supervisor_account</mat-icon> {{userNick}}</div>
+          <ul tabindex="0" class="m-2 dropdown-content z-[1] menu p-2 shadow bg-white rounded-box w-52">
+            <button (click)="singOut()">Выйти</button>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,8 @@
+# docker-compose.yml
+version: '3'
+
+services:
+  websocket-server:
+    build: .
+    ports:
+      - "8081:8081"

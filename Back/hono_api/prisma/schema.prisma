@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Attachment {
+  id         Int      @id @default(autoincrement())
+  message_id Int?
+  type       String?  @db.VarChar(50)
+  url        String?  @db.VarChar(255)
+  Message    Message? @relation(fields: [message_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model Group {
+  id      Int       @id @default(autoincrement())
+  name    String    @db.VarChar(255)
+  Message Message[]
+}
+
+model Message {
+  id         Int          @id @default(autoincrement())
+  content    String?
+  timestamp  DateTime?    @db.Timestamp(6)
+  user_id    Int?
+  group_id   Int?
+  Attachment Attachment[]
+  Group      Group?       @relation(fields: [group_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  User       User?        @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model User {
+  id            Int       @id @default(autoincrement())
+  nickname      String    @unique @db.VarChar(50)
+  password_hash String    @db.VarChar(255)
+  username      String?   @db.VarChar(255)
+  status        Status
+  Message       Message[]
+}
+
+enum Status {
+  USER
+  GUEST
+}

@@ -1,0 +1,30 @@
+<div class="h-full w-full flex justify-center items-center">
+  <div class="flex space-x-5">
+    <div class="card p-1 bg-accent shadow-xl">
+      <div class=" webcam-container">
+        <webcam [videoOptions]="videoOption">Камера отключена</webcam>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="h-full w-full justify-between flex">
+  <button (click)="startRecording()" class="btn m-5">Start Recording</button>
+  <button (click)="stopRecording()" class="btn m-5">Stop Recording</button>
+</div>
+<div class="h-full w-full flex justify-center items-center" >
+  <div class="m-10">
+    <button class="btn" (click)="sendMessage()">Send</button>
+  </div>
+  <div class="m-10">
+    <button class=" "></button>
+  </div>
+  <div class="m-10 h-5 w-5">
+    <button *ngIf="microphone==true" class="  " (click)="buttonMicrophone()"></button>
+    <button  *ngIf="microphone==false" class=" " (click)="buttonMicrophone()"></button>
+  </div>
+  <div class="m-10">
+    <button  class=" " ></button>
+
+  </div>
+</div>
